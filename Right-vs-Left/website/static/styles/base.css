@@ -1,0 +1,106 @@
+.page {
+    display: inline;
+}
+
+.sidebar {
+    width: 400px;
+    float: left;
+}
+
+/* .main-bar {
+    margin-left: 200px;
+} */
+
+/* .main-logo, .mini-logo {
+    font-family: 'Lobster', cursive;
+    font-family: 'Lobster Two', cursive;
+    /* padding: 50px; */
+   /* display: block;
+    float: top;
+    font-size: 36px;
+    line-height: 24px;
+    /* position: absolute; */
+    /* left: 10px;
+    top: 20px; */ /*
+} */
+
+/* .text-logo {
+    margin-top: 30px;
+} */
+
+.date-published {
+    color: rgb(175, 175, 175);
+}
+
+.search-form {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 50px;
+    background: rgba(198, 198, 198, 0.2);
+    display: flex;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    /* backdrop-filter: blur(20px) saturate(200%); give background blur*/
+}
+
+.search-form input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    border-radius: 25%;
+    border-color: gray;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 20px;
+    color: rgb(30, 30, 30);
+}
+
+.search-form button {
+    margin-top: 4px;
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    background: rgb(198, 198, 198);
+}
+
+.search-bar {
+    border-radius: 50px;
+    border: 2px black;
+    margin-left: 225px;
+}
+
+.cards {
+    /* margin-left: 20px; */
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.card-left {
+    flex: 0 1 30%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.card-neutral {
+    flex: 0 1 30%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.card-right {
+    flex: 0 1 30%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.cards a {
+    color: black;
+}

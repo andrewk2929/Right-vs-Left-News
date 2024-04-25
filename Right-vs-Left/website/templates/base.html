@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'styles/base.css') }}">
+    <script src="https://kit.fontawesome.com/fc60d31607.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+{% block content %}
+<body>
+  <div class = "page">
+    <!-- <div class = "sidebar">
+      <div class = "text-logo" align = "center">
+        <h3 class = "main-logo" id = "right-logo"><b>RIGHT</b></h3>
+        <h5 class = "mini-logo"><b>VS</b></h5>
+        <h3 class = "main-logo" id = "left-logo"><b>LEFT</b></h3>
+      </div>
+    </div> -->
+    <div class = "main-bar">
+      <div class = "search-bar">
+        <form action = "{{url_for('views.topic')}}", method = "POST" class = "search-form">
+          <input type="text" id = "topic" name = "topic" placeholder="Enter news topic">
+          <a href="{{ url_for('views.topic') }}"><input type="submit" value="search"><span class="material-symbols-outlined">
+            search
+          </span></a> 
+          <!-- When i add button the link doesn't work -->
+        </form>
+      </div>
+      <div class="cards">
+        <!-- left card -->
+        <div class = "card-left" style="width: 600px;">
+          <a class = "left-url-link" href="{{left_art_url}}">
+          <h1>LEFT</h1>
+          <hr>
+          <!-- <img src="static/images/news_placeholder.webp" alt = "Breaking News" title = "{{usr_topic}} left news"
+          onerror="this.onerror=null;this.src='static/images/breaking-news-blog.jpg'" class="card-img-top">
+          <div class="card-body"> -->
+            <h5 class="card-title">{{left_art_title}}</h5>
+            <h1>Summary</h1>
+            <hr>
+            <p class="card-text">{{left_art_summary}}</p>
+            {% if left_art_authors == None %}
+            {% else %}
+              <p class = 'date-published'>By: {{left_art_authors}}</p>
+            {% endif %}
+            {% if left_art_publish == None %}
+            {% else %}
+              <p class = "date-published">{{left_art_publish}}</p>
+            {% endif %}
+          </div>
+          </a>
+          <!-- right card -->
+          <div class = "card-right" style="width: 600px;">
+            <a class = "right-url-link" href="{{right_art_url}}">
+            <h1>RIGHT</h1>
+            <hr>
+            <!-- <img src="static/images/news_placeholder.webp" alt = "Breaking News" title = "{{usr_topic}} right news"
+          onerror="this.onerror=null;this.src='static/images/breaking-news-blog.jpg'" class="card-img-top">
+          <div class="card-body"> -->
+            <!-- <h1>Title</h1> -->
+            <h5 class="card-title">{{right_art_title}}</h5>
+            <h1>Summary</h1>
+            <hr>
+            <p class="card-text">{{right_art_summary}}</p>
+            {% if right_art_authors == None %}
+            {% else %}
+              <p class = 'date-published'>By: {{right_art_authors}}</p>
+            {% endif %}
+            {% if right_art_publish == None %}
+            {% else %}
+              <p class = "date-published">{{right_art_publish}}</p>
+            {% endif %}
+          </div>
+          </a>
+          <!-- neutral card -->
+          <div class = "card-neutral" style="width: 600px;">
+            <a class="neutral-url-link" href="{{neutral_art_url}}">
+            <h1>NEUTRAL</h1>
+            <hr>
+            <!-- <img src="static/images/news_placeholder.webp" alt = "Breaking News" title = "{{usr_topic}} neutral news"
+            onerror="this.onerror=null;this.src='static/images/breaking-news-blog.jpg'" class="card-img-top">
+            <div class="card-body"> -->
+              <!-- <h1>Title</h1> -->
+              <h5 class="card-title">{{neutral_art_title}}</h5>
+              <h1>Summary</h1>
+              <hr>
+              <p class="card-text">{{neutral_art_summary}}</p>
+              {% if neutral_art_authors == None %}
+              {% else %}
+                <p class = "date-published">By: {{neutral_art_authors}}</p>
+              {% endif %}
+              {% if neutral_art_publish == None %}
+              {% else %}
+                <p class = "date-published">{{neutral_art_publish}}</p>
+              {% endif %}
+            </div>
+            </a>
+          </div>
+          <p class = 'citations'>media bias from https://www.allsides.com/media-bias/media-bias-chart and https://cms9files.revize.com/goshencountysd/GCSDLib/HSchools/Media-Bias-Chart-7.0_January-2021-Licensed-Copy-kqpxtc.pdf</p>
+      </div>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=True)%}
+    {% if messages %}
+      {% for category, message in messages %}
+        {% if category == "error" or category == "warning" %}
+          <div class="alert alert-danger aler-dismissable fade show" role="alert">
+            {{message}}
+            <button type = "button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% else %}
+          <div class="alert alert-success aler-dismissable fade show" role="alert">
+            {{message}}
+            <button type = "button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</body>
+{% endblock %}
+</html>
